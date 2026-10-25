@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Cao Xuân Đức | CV An ninh mạng</title>
+<meta name="description" content="CV trực tuyến của Cao Xuân Đức, sinh viên năm 2 ngành Công nghệ thông tin, chuyên ngành An ninh mạng.">
+<meta name="theme-color" content="#050a0f">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%F0%9F%9B%A1%EF%B8%8F%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;800&family=Space+Grotesk:wght@400;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<canvas id="rain"></canvas>
+<div class="wrap">
+<nav class="mono"><div class="links"><a href="#about">gioi-thieu</a><a href="#skills">ky-nang</a><a href="#edu">hoc-van</a><a href="#hobby">so-thich</a><a href="#goals">dinh-huong</a><a href="#contact">lien-he</a></div><button id="theme" type="button">sáng / tối</button></nav>
+<main id="app"></main>
+<footer class="mono">&copy; <span id="yr"></span> <span id="fn"></span> · CV trực tuyến</footer>
+</div>
+<noscript><p style="position:relative;z-index:2;text-align:center;padding:40px">Trang cần bật JavaScript để hiển thị nội dung.</p></noscript>
+<script>
+const CV = {
+  name: "Cao Xuân Đức",
+  title: "Sinh viên năm 2, Công nghệ thông tin",
+  typed: ["Sinh viên năm 2, đam mê an ninh mạng.","Đang học Linux, mạng máy tính và Python.","Mục tiêu: trở thành chuyên gia an ninh mạng."],
+  photo: "images.jpg", 
+  about: "Mình là sinh viên năm 2 ngành Công nghệ thông tin, đang học Trường Đại học Bình Dương. Mình quan tâm đến lập trình bảo mật, tìm hiểu các loại lỗ hổng và cách phòng chống chúng. Hiện mình đang học về hệ điều hành, thuật toán và lập trình, đồng thời tự luyện thêm Linux và Python. Mục tiêu của mình là trở thành chuyên gia an ninh mạng và làm việc tại công an ",
+  facts: [["Trường","Trường Đại học Bình Dương"],["Năm học","Sinh viên năm 2"],["Nơi ở","Dĩ An, Bình Dương"],["Mục tiêu","Thành thạo lập trình bảo mật, làm việc tại VNG hoặc công an"]],
+  skillsTitle: "Kỹ năng đang học",
+  skills: [["Linux và dòng lệnh",45],["Python",50],["Mạng máy tính (TCP/IP)",40],["Thuật toán và cấu trúc dữ liệu",45],["Bảo mật ứng dụng web",25],["Mật mã học cơ bản",20]],
+  tools: ["Linux","GitHub","VirtualBox"],
+  learning: ["Burp Suite","Metasploit","Docker"],
+  courses: ["Hệ điều hành","Thuật toán và cấu trúc dữ liệu","Nhập môn lập trình"],
+  edu: [
+    {d:"2025 – nay",t:"Sinh viên Công nghệ thông tin",o:"Trường Đại học Bình Dương",p:"Đang học năm 2. Tập trung vào hệ điều hành, thuật toán và lập trình, làm nền cho các môn chuyên ngành an ninh mạng."}
+  ],
+  expTitle: "Hoạt động",
+  exp: [
+    {d:"[2025– nay]",t:"[Hoạt động: câu lạc bộ an toàn thông tin, Big Data...]",p:"[Tham gia các hoạt động ngoại khóa, câu lạc bộ về an ninh mạng và Big Data, học hỏi kinh nghiệm từ các anh chị đi trước.]"}
+  ],
+  hobbies: [
+    {t:"Game, thể thao",p:"Chơi PUBG Mobile và Delta Force. Thích bơi, cầu lông."},
+    {t:"Học tiếng Anh",p:"Luyện từ vựng và ngữ pháp để đọc tài liệu."},
+    {t:"Tự học Linux và lập trình",p:"Dùng thời gian rảnh để thử lệnh Linux, viết script Python nhỏ và dựng máy ảo để luyện tập."}
+  ],
+  goals: [
+    {d:"Ngắn hạn · năm 2 đến năm 3",t:"Vững nền tảng",p:"Học chắc hệ điều hành, thuật toán, lập trình. Dùng thành thạo Linux và Python. Làm quen các bài lab cơ bản trên TryHackMe."},
+    {d:"Trung hạn · năm 3 đến năm 4",t:"Đi vào chuyên ngành",p:"Học sâu bảo mật ứng dụng web và an toàn mạng, tham gia CTF, tìm cơ hội thực tập về an ninh mạng."},
+    {d:"Dài hạn · sau khi tốt nghiệp",t:"Trở thành chuyên gia an ninh mạng",p:"Làm việc tại VNG hoặc công an, tập trung vào lập trình bảo mật và phòng chống tấn công mạng."}
+  ],
+  contact: {email:"25050054@student.bdu.edu.vn",phone:"0987988485",github:"github.com/25050054-del"}
+};
+const $=s=>document.querySelector(s),esc=s=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const C=CV;
+document.title=C.name+" | CV An ninh mạng";$('#fn').textContent=C.name;$('#yr').textContent=new Date().getFullYear();
+$('#app').innerHTML=`
+<div class="hero">
+ <div><h1 data-t="${esc(C.name)}">${esc(C.name)}<em>_</em></h1>
+ <div class="mono" style="color:var(--mute);font-size:14px;margin-bottom:8px">${esc(C.title)}</div>
+ <div class="typed mono"><span id="ty"></span><span class="caret"></span></div>
+ <div class="cta"><a class="btn f" href="#contact">Liên hệ</a><a class="btn" href="#goals">Xem định hướng</a><button class="btn" type="button" onclick="print()">Tải CV (PDF)</button></div></div>
+ <div class="avatar">${C.photo?`<img src="${esc(C.photo)}" alt="${esc(C.name)}">`:''}${esc(C.name.charAt(0).toUpperCase())}</div>
+</div>
+<section id="about" class="rv"><h2>Giới thiệu</h2><div class="panel"><p style="margin:0">${esc(C.about)}</p>
+ <div class="facts mono">${C.facts.map(f=>`<div class="fact">${esc(f[0])}<b>${esc(f[1])}</b></div>`).join('')}</div></div></section>
+<section id="skills" class="rv"><h2>${esc(C.skillsTitle)}</h2><div class="two">
+ <div class="panel">${C.skills.map(s=>`<div class="sk"><div class="t mono"><span>${esc(s[0])}</span><span>${s[1]}%</span></div><div class="b"><i data-w="${s[1]}" style="--w:${s[1]}%"></i></div></div>`).join('')}</div>
+ <div class="panel"><div class="mono" style="font-size:12px;color:var(--mute)">Công cụ</div>${C.tools.map(t=>`<span class="chip mono">${esc(t)}</span>`).join('')}
+ <div class="mono" style="font-size:12px;color:var(--mute);margin-top:20px">Đang tìm hiểu</div>${C.learning.map(t=>`<span class="chip mono">${esc(t)}</span>`).join('')}
+ <div class="mono" style="font-size:12px;color:var(--mute);margin-top:20px">Môn học liên quan</div>${C.courses.map(t=>`<span class="chip mono">${esc(t)}</span>`).join('')}</div></div></section>
+<section id="edu" class="rv"><h2>Học vấn</h2><div class="tl">${C.edu.map(e=>`<div class="item"><div class="d mono">${esc(e.d)}</div><h3>${esc(e.t)}</h3><div class="o">${esc(e.o)}</div>${e.p?`<p>${esc(e.p)}</p>`:''}</div>`).join('')}</div>
+ <h2 style="margin-top:34px">${esc(C.expTitle)}</h2><div class="tl">${C.exp.map(e=>`<div class="item"><div class="d mono">${esc(e.d)}</div><h3>${esc(e.t)}</h3><div class="o">${esc(e.o)}</div>${e.p?`<p>${esc(e.p)}</p>`:''}</div>`).join('')}</div></section>
+<section id="hobby" class="rv"><h2>Sở thích</h2><div class="two">${C.hobbies.map(h=>`<div class="proj"><h3>${esc(h.t)}</h3><p>${esc(h.p)}</p></div>`).join('')}</div></section>
+<section id="goals" class="rv"><h2>Định hướng</h2><div class="tl">${C.goals.map(g=>`<div class="item"><div class="d mono">${esc(g.d)}</div><h3>${esc(g.t)}</h3><p>${esc(g.p)}</p></div>`).join('')}</div></section>
+<section id="contact" class="rv"><h2>Liên hệ</h2><div class="term mono"><div class="bar"><i></i><i></i><i></i></div><pre> cat lien-he.txt
+ Email: 25050054@student.bdu.edu.vn
+ Phone: 0987988485
+ GitHub: github.com/25050054-del
+<span class="caret"></span></pre></div></section>`;
+(function(){const el=$('#ty');let w=0,i=0,del=false;(function t(){const s=C.typed[w];el.textContent=s.slice(0,i);
+ if(!del&&i===s.length){del=true;return setTimeout(t,1800)}
+ if(del&&i===0){del=false;w=(w+1)%C.typed.length}
+ i+=del?-1:1;setTimeout(t,del?18:45)})()})();
+const show=el=>{el.classList.add('on');el.querySelectorAll('.sk .b i').forEach(i=>i.style.width=i.dataset.w+'%')};
+if('IntersectionObserver' in window){
+ const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){show(e.target);io.unobserve(e.target)}}),{threshold:.1});
+ document.querySelectorAll('.rv').forEach(s=>io.observe(s));
+}else{document.querySelectorAll('.rv').forEach(show)}
+$('#theme').onclick=()=>{const r=document.documentElement;r.setAttribute('data-theme',getComputedStyle(r).colorScheme==='dark'?'light':'dark')};
+(function(){
+ const c=$('#rain'),x=c.getContext&&c.getContext('2d');
+ if(!x||matchMedia('(prefers-reduced-motion: reduce)').matches){c.style.display='none';return}
+ const ch='01#$%&<>{}/\\ABCDEF'.split(''),cs=()=>getComputedStyle(document.documentElement);
+ let cols,d;
+ function sz(){c.width=innerWidth;c.height=innerHeight;cols=Math.floor(c.width/16);d=Array(cols).fill(0).map(()=>Math.random()*-50)}
+ sz();addEventListener('resize',sz);
+ setInterval(()=>{
+  if(document.hidden)return;
+  x.globalAlpha=.12;x.fillStyle=cs().getPropertyValue('--bg').trim()||'#050a0f';x.fillRect(0,0,c.width,c.height);
+  x.globalAlpha=1;x.fillStyle=cs().getPropertyValue('--acc').trim()||'#00ff9c';x.font='14px monospace';
+  d.forEach((y,i)=>{x.fillText(ch[Math.random()*ch.length|0],i*16,y*16);d[i]=y*16>c.height&&Math.random()>.975?0:y+1})
+ },60);
+})();
+</script>
+</body>
+</html>
